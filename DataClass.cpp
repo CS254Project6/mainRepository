@@ -20,5 +20,10 @@ FileData::FileData(string Sample_arg, string BgL_arg, string RelTime_arg, string
 	Fa = Fa_arg;
 	IRQ = IRQ_arg;
 }
+
+void FileData::setSample(string Sample_arg)
+{
+	Sample = Sample_arg;
+}
 	
 
