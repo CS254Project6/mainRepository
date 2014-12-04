@@ -7,9 +7,10 @@ using namespace std;
 class FileData
 {
 private:
-	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, IRQ;
+	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fail, IRQ;
 public:
-	void setSample(string Sample);
+	FileData(string, string, string, string, string, string,                     string, string, string, string, string, string);
+	void setSample(string);
 	void setBgL(string);
 	void setRelTime(string);
 	void setAbsTime(string);
@@ -20,6 +21,7 @@ public:
 	void setCycle(string);
 	void setStatus(string);
 	void setIack(string);
+	void setFail(string);
 	void setIRQ(string);
 	string getSample();
 	string getBgL();
@@ -32,6 +34,7 @@ public:
 	string getCycle();
 	string getStatus();
 	string getIack();
+	string getFail();
 	string getIRQ();
 };
 	
