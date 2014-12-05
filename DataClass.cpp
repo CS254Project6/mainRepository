@@ -3,8 +3,9 @@
 #include <string>
 using namespace std;
 
-FileData::FileData(string Sample_arg, string BgL_arg, string RelTime_arg, string AbsTime_arg, string Transfer_arg, string AM_arg,                                  string Address_arg, string Data_arg, string Cycle_arg,  string Status_arg, string Iack_arg, string Fail_arg, string IRQ_arg)
+FileData::FileData(int line, string Sample_arg, string BgL_arg, string RelTime_arg, string AbsTime_arg, string Transfer_arg, string AM_arg,                                  string Address_arg, string Data_arg, string Cycle_arg,  string Status_arg, string Iack_arg, string Fail_arg, string IRQ_arg)
 {
+	int lineNumber = line;	
 	Sample = Sample_Arg;
 	BgL = BgL_arg;
 	RelTime = RelTime_arg;
@@ -19,6 +20,11 @@ FileData::FileData(string Sample_arg, string BgL_arg, string RelTime_arg, string
 	Iack = Iack_arg;
 	Fail = Fail_arg;
 	IRQ = IRQ_arg;
+}
+
+void FileData::setLineNumber(int line)
+{
+	lineNumber = line;
 }
 
 void FileData::setSample(string Sample_arg)
@@ -86,6 +92,13 @@ void FileData::setIRQ(string IRQ_arg)
 {
 	IRQ = IRQ_arg;
 }
+
+int FileData::getLineNumber()
+{
+	return lineNumber;
+}
+
+void FileData::reset(
 
 string FileData::getSample()
 {

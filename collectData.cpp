@@ -11,12 +11,21 @@ int main()
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
 	input.open("test_data.log");
 	FileData line;
-	if(input.is_open())
+	input.ignore(10000, '\n');
+	int lines = 1;
+
+	while(input.is_open())
 	{
-		input.ignore(10000, '\n');
-		input >> Sample >> BgL >> RelTime >> AbsTime >> Transfer >> AM >> Address >> Data >> Size >> Cycle >> Status >> Iack >> Fa			  >> blank;
+		input >> Sample >> BgL >> RelTime >> AbsTime >> Transfer >> AM >> Address >> Data >> Size >> Cycle >> Status >> Iack >> Fa >> blank;
+
+	// Store this info into the class FileData line
+
+	// Send this class to another function to do work/translation
+
+
+	// Iterate lines to keep track of line numbers
+		lines++;
 	}
-	cout << Sample << " " << BgL << " " << RelTime << " " << AbsTime << " " << Transfer << " " << AM << " " << Address << " " << Data <<	               " " << Size << " " << Cycle  << " "<< Status  << " "<< Iack << " " << Fa << " " << blank << " " << endl;
 	input.close();
 	cout << "Grabbing input success" << endl;
 	

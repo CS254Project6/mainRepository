@@ -7,9 +7,11 @@ using namespace std;
 class FileData
 {
 private:
+	int lineNumber;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fail, IRQ;
 public:
-	FileData(string, string, string, string, string, string,                     string, string, string, string, string, string);
+	FileData(int, string, string, string, string, string, string,                     string, string, string, string, string, string);
+	void setLineNumber(int);
 	void setSample(string);
 	void setBgL(string);
 	void setRelTime(string);
@@ -23,6 +25,7 @@ public:
 	void setIack(string);
 	void setFail(string);
 	void setIRQ(string);
+	int getLineNumber(int);
 	string getSample();
 	string getBgL();
 	string getRelTime();
