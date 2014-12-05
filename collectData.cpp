@@ -9,15 +9,29 @@ int main()
 {
 	ifstream input;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
-	input.open("test_data.log");
 	FileData line;
+	input.open("test_data.log");
 	input.ignore(10000, '\n');
 	int lines = 1;
 
 	while(input.is_open())
 	{
 		input >> Sample >> BgL >> RelTime >> AbsTime >> Transfer >> AM >> Address >> Data >> Size >> Cycle >> Status >> Iack >> Fa >> blank;
-
+		line.setSample(Sample);
+		line.setBgL(BgL);
+		line.setRelTime(RelTime);
+		line.setAbsTime(AbsTime);
+		line.setTransfer(Transfer);
+		line.setAM(AM);
+		line.setAddress(Address);
+		line.setData(Data);
+		line.setSize(Size);
+		line.setCycle(Cycle);
+		line.setStatus(Status);
+		line.setIack(Iack);
+		line.setFail(Fa);
+		line.setIRQ(blank);
+		cout << line.getAddress() << " " << endl;
 	// Store this info into the class FileData line
 
 	// Send this class to another function to do work/translation
@@ -25,6 +39,7 @@ int main()
 
 	// Iterate lines to keep track of line numbers
 		lines++;
+		//system("pause");
 	}
 	input.close();
 	cout << "Grabbing input success" << endl;
