@@ -8,6 +8,10 @@ class OutData
 {
 private:
 	int Rec_Ctrl, Cmd_Type, Rec_Raw, Cmd_ID, Num_Responses, Reset_Enable, Direction, Num_Samples, Parity, Test, Ctrl_Enable, Code;
+	int linenumber;
+	bool write = false;
+	bool D2S = false;
+	int words;
 public:
 	//FileParity(int, int, int, int, int, int, int, int, int);
 	OutData();
@@ -36,5 +40,6 @@ public:
 	int getCtrl_Enable();
 	int getCode();
 	
+	void printline(int word);
 };
 #endif
