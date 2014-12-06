@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include "DataClass.h"
+#include <queue>
 using namespace std;
 
 int main()
@@ -10,6 +11,7 @@ int main()
 	ifstream input;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
 	FileData line;
+	queue<FileData> list;
 	input.open("test_data.log");
 	input.ignore(10000, '\n');
 	int lines = 1;
@@ -31,17 +33,19 @@ int main()
 		line.setIack(Iack);
 		line.setFail(Fa);
 		line.setIRQ(blank);
-		cout << line.getAddress() << " " << endl;
-	// Store this info into the class FileData line
-
-	// Send this class to another function to do work/translation
-
-
-	// Iterate lines to keep track of line numbers
+		cout << line.getAddress() << line.getSample() << endl;
+		
+		list.push(line);
+	
 		lines++;
-		//system("pause");
 	}
+		//system("pause");
+	
 	input.close();
+	while(!list.empty())
+	{
+		cout << list.front().getAddress() << endl;
+	}
 	cout << "Grabbing input success" << endl;
 	
 
