@@ -21,9 +21,9 @@ public: LinkedList()
 	}
 	T Pop()
 	{
-		NODE *p = OLL;
+		NODE *p = LL;
 		T x = p -> info;
-		OLL = p -> next;
+		LL = p -> next;
 		delete (p);
 		return x;
 	}
