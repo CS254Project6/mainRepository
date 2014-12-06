@@ -16,7 +16,7 @@ int main()
 	input.ignore(10000, '\n');
 	int lines = 1;
 
-	while(input.is_open())
+	while(!input.eof())
 	{
 		input >> Sample >> BgL >> RelTime >> AbsTime >> Transfer >> AM >> Address >> Data >> Size >> Cycle >> Status >> Iack >> Fa >> blank;
 		line.setSample(Sample);
@@ -33,7 +33,8 @@ int main()
 		line.setIack(Iack);
 		line.setFail(Fa);
 		line.setIRQ(blank);
-		cout << line.getAddress() << line.getSample() << endl;
+		line.setLineNumber(lines);
+		cout << line.getLineNumber() << " " << line.getAddress() << " " << endl;
 		
 		list.push(line);
 	
@@ -44,7 +45,8 @@ int main()
 	input.close();
 	while(!list.empty())
 	{
-		cout << list.front().getAddress() << endl;
+		cout << list.front().getLineNumber() << endl;
+		list.pop();
 	}
 	cout << "Grabbing input success" << endl;
 	
