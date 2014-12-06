@@ -9,9 +9,10 @@ class OutData
 private:
 	int Rec_Ctrl, Cmd_Type, Rec_Raw, Cmd_ID, Num_Responses, Reset_Enable, Direction, Num_Samples, Parity, Test, Ctrl_Enable, Code;
 	int linenumber;
-	bool write = false;
-	bool D2S = false;
 	int words;
+	bool write;
+	bool D2S;
+	bool HiLo;
 public:
 	//FileParity(int, int, int, int, int, int, int, int, int);
 	OutData();
@@ -27,6 +28,12 @@ public:
 	void setTest(int);
 	void setCtrl_Enable(int);
 	void setCode(int);
+	void setlinenumber(int);
+	void setwords(int);
+	void setwrite(bool);
+	void setD2S(bool);
+	void set HiLo(bool);
+	
 	int getRec_Ctrl();
 	int getCmd_Type();
 	int getRec_Raw();
@@ -39,7 +46,10 @@ public:
 	int getTest();
 	int getCtrl_Enable();
 	int getCode();
-	
-	void printline(int word);
+	int getlinenumber();
+	int getwords();
+	bool getwrite();
+	bool getD2S();
+	bool getHiLo();
 };
 #endif
