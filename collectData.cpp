@@ -6,7 +6,7 @@
 #include <queue>
 using namespace std;
 
-int main()
+void readFromFile()
 {
 	ifstream input;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
@@ -49,7 +49,4 @@ int main()
 		list.pop();
 	}
 	cout << "Grabbing input success" << endl;
-	
-
-return 0;
 }
