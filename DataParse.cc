@@ -181,7 +181,7 @@ Queue parse(Queue& list)
 			returnList.push_back(data);
 		}
 		
-
+		list.pop();
 	}
 	
 	return returnList;
