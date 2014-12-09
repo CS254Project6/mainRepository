@@ -62,11 +62,6 @@ int main()
 	string Bin=Hex_to_Bin(b);
 	Bin.push_back('A');
 	
-	//Hex_Splitter(c,&Big,&Boy);
-	//Big=Hex_to_Bin(Big);
-	//Boy=Hex_to_Bin(Boy);
-	//cout<<Big<<endl;
-	//out<<Boy<<endl;
 
 	unsigned int x = 12;
 	unsigned int y = C8;
