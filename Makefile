@@ -1,28 +1,22 @@
 all: compile
 
-compile: main.o DataClass.o collectData.o DataParse.o DataClassHeader.o DataOut.o DataOutHeader.o
-	  g++ main.o DataClass.o collectData.o DataParse.o DataClassHeader.o DataOut.o DataOutHeader.o-o execute data
+compile: main.o DataClass.o collectData.o DataParse.o DataOut.o 
+	  g++ main.o DataClass.o collectData.o DataParse.o DataOut.o -o execute
 
 main.o: main.cpp
 	g++ -c main.cpp
 
-DataClass.o: 
-	g++ -c DataClass.cpp 
+DataClass.o: DataClass.cpp DataClass.h
+	g++ -c DataClass.cpp DataClass.h
 
-DataClassHeader.o:
-	g++ -c DataClass.h
-
-collectData.o:
+collectData.o: DataClass.h DataClass.cpp
 	g++ -c collectData.cpp
 
-DataParse.o:
-	g++ -c DataParse.cpp
+DataParse.o: DataClass.h DataClass.cpp DataOut.h DataOut.cpp
+	g++ -c DataParse.cc
 
 DataOut.o:
 	g++ -c DataOut.cpp
 
-DataOutHeader.o:
-	g++ -c DataOut.h
-
 clean: 
-	rm -rf *o compile
+	rm -rf *o execute

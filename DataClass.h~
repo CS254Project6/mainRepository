@@ -1,9 +1,9 @@
 //Class to store the data
-#include <string>
-using namespace std;
+
 #ifndef DATA_CLASS
 #define DATA_CLASS
-
+#include <string>
+using namespace std;
 class FileData
 {
 private:
@@ -27,7 +27,7 @@ public:
 	void setIack(string);
 	void setFail(string);
 	void setIRQ(string);
-	int getLineNumber(int);
+	int getLineNumber();
 	string getSample();
 	string getBgL();
 	string getRelTime();

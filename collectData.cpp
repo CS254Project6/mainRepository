@@ -4,12 +4,14 @@
 #include <string>
 #include "DataClass.h"
 #include <queue>
+#include "DataOut.h"
 using namespace std;
 
 queue<FileData> parse(queue<FileData> &);
 
 void readFromFile()
 {
+	queue<OutData> OutQueue;
 	ifstream input;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
 	FileData line;
@@ -44,5 +46,13 @@ void readFromFile()
 	
 	input.close();
 	cout << "Grabbing input success" << endl;
+	
+	//OutQueue = 
 	parse(list); //passes the queue into the parser
 }
+
+
+
+
+
+

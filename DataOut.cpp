@@ -70,19 +70,19 @@ void OutData::setCode(int x)
 {
 	Code=x;
 }
-void setlinenumber(int x);
+void OutData::setlinenumber(int x)
 {
-	linenumber=x;
+	linenumber = x;
 }
-void setwrite(bool x);
+void OutData::setwrite(bool x)
 {
 	write=x;
 }
-void setD2S(bool x);
+void OutData::setD2S(bool x)
 {
 	D2S=x;
 }
-void setwords(int x);
+void OutData::setwords(int x)
 {
 	words=x;
 }

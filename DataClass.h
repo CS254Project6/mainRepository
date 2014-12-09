@@ -42,6 +42,7 @@ public:
 	string getIack();
 	string getFail();
 	string getIRQ();
+	//FileData operator+(const FileData&);
 };
 	
 

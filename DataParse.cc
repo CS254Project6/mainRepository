@@ -8,12 +8,12 @@
 #include <vector>
 #include <queue>
 #include <stack>
-
+#include<cstdlib>
 using namespace std;
 
 // FUNCTION DECLARATIONS
 
-void Hex_Splitter(string a, string *b, string *c);
+void Hex_Splitter(string a, string &b, string &c);
 //splits 8 digit hexadecimal string in half
 int Hex_to_Dec(string a);
 //converts Hexadecimal string to word count as an int
@@ -46,13 +46,14 @@ int fortyone ( string );
 
 // BEGIN MAIN FILE ITERATION
 
-queue<FileData> parse(queue<FileData> &list)
+queue<OutData> parse(queue<FileData> &list)
 {
 	queue<OutData> returnList;      //May need fixing
-
+	
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
 	{
+		OutData data;
 		FileData temp = list.front();
 		int Word_Num = 0;
 		
@@ -71,63 +72,73 @@ queue<FileData> parse(queue<FileData> &list)
 			d2s = true;
 		}
 		
+		
+		/*
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		Changed some of the class defintions.
+		*/
 		if (createData == true)
 		{
 			if ( d2s == false )
-				data.setD2S=false;
+				//data.setD2S=false;
+				data.setD2S(false);
 			else
-				data.setD2S=true;
-				
-			data.words=Word_Num;
-			data.linenumber=temp.linenumber;
+				//data.setD2S=true;
+				data.setD2S(true);
+			data.setwords(Word_Num);
+			data.setlinenumber(temp.getLineNumber());
 			
-			if(temp.getCycle=="Wr")
-				data.setwrite=true;
+			if(temp.getCycle() == "Wr")
+				//data.setwrite=true;
+				data.setwrite(true);
 			else
-				data.setwrite=false;
+				//data.setwrite=false;
+				data.setwrite(false);
 			
 		
 			if (Word_Num!=0)
 			{
 				// Create a Vector in order from 0 -> highest
-				Vector<string> next;
+				vector<string> next;
 				
-				list.pop()
+				list.pop();
 				temp = list.front();
-				string aa;
-				string bb;
+				string aa = NULL;
+				string bb = NULL;
 				Hex_Splitter(temp.getData(),aa,bb);
 				aa=Hex_to_Bin(aa);
 				bb=Hex_to_Bin(bb);
 				next.push_back(aa);
 				next.push_back(bb);
-				string tempAddress = list.front().getAddress;
-				list.pop()
+				string tempAddress = list.front().getAddress();
+				list.pop();
 				temp = list.front();
 				
 				bool hilo = false;
-				if (Hex_to_Dec(tempAddress) > Hex_to_Dec(temp.getAddress))
+				if (Hex_to_Dec(tempAddress) > Hex_to_Dec(temp.getAddress()))
 					hilo = true;
 					
 				for ( int i = 1; i <= (Word_Num/2); i++)
 				{
 					string aa;
 					string bb;
-					Hex_Splitter(temp.getData,aa,bb);
+					Hex_Splitter(temp.getData(),aa,bb);
 					aa=Hex_to_Bin(aa);
 					bb=Hex_to_Bin(bb);
 					//if statement to deal with low high high low ordering
 					if ( hilo == true )
 					{
-						next.insert(bb, 0);
-						next.insert(aa, 0);
+						next.push_back(bb);
+						next.push_back(aa);
 					}
 					else
 					{
 						next.push_back(aa);
 						next.push_back(bb);
 					}
-					list.pop()
+					list.pop();
 					temp = list.front();
 				}
 				
@@ -140,7 +151,7 @@ queue<FileData> parse(queue<FileData> &list)
 							data.setRec_Ctrl(zero(next[0]));
 							break;
 						case 1:
-							data.setCmd_Type(one(next[1]);;
+							data.setCmd_Type(one(next[1]));
 							break;
 						case 4:
 							data.setRec_Raw(four(next[4]));
@@ -152,7 +163,7 @@ queue<FileData> parse(queue<FileData> &list)
 							data.setNum_Responses(ten(next[10]));
 							break;
 						case 15:
-							data.setReset_Enable(next[15]));
+							data.setReset_Enable(fifteen(next[15]));
 							break;
 						case 22:
 							data.setDirection(twentytwo(next[22]));
@@ -178,7 +189,7 @@ queue<FileData> parse(queue<FileData> &list)
 				}
 			}
 			
-			returnList.push_back(data);
+			returnList.push(data);
 		}
 		
 		list.pop();
@@ -189,14 +200,14 @@ queue<FileData> parse(queue<FileData> &list)
 
 // FUNCTION DEFINITIONS
 
-int zero ( bitset bits )  //Calls the 0 word using bits 14-13
+int zero ( string bits )  //Calls the 0 word using bits 14-13
 {
 	string bitValue = "";
 	
 	bitValue.push_back(bits[1]);
 	bitValue.push_back(bits[2]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int one ( string bits )
@@ -208,7 +219,7 @@ int one ( string bits )
 	bitValue.push_back(bits[1]);
 	bitValue.push_back(bits[2]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int four ( string bits )
@@ -218,7 +229,7 @@ int four ( string bits )
 	
 	bitValue.push_back(bits[15]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int five ( string bits )
@@ -234,7 +245,7 @@ int five ( string bits )
 	bitValue.push_back(bits[14]);
 	bitValue.push_back(bits[15]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int ten ( string bits )
@@ -248,7 +259,7 @@ int ten ( string bits )
 	bitValue.push_back(bits[3]);
 	bitValue.push_back(bits[4]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int fifteen ( string bits )
@@ -258,7 +269,7 @@ int fifteen ( string bits )
 	
 	bitValue.push_back(bits[13]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int twentytwo ( string bits )
@@ -268,7 +279,7 @@ int twentytwo ( string bits )
 	
 	bitValue.push_back(bits[12]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int thirtytwo ( string bits )
@@ -279,7 +290,7 @@ int thirtytwo ( string bits )
 	for ( int i = 1; i < 16; i++)
 		bitValue.push_back(bits[i]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int thirtyseven ( string bits )
@@ -289,7 +300,7 @@ int thirtyseven ( string bits )
 	
 	bitValue.push_back(bits[0]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int thirtyeight ( string bits )
@@ -299,7 +310,7 @@ int thirtyeight ( string bits )
 	
 	bitValue.push_back(bits[1]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int forty ( string bits )
@@ -309,7 +320,7 @@ int forty ( string bits )
 	
 	bitValue.push_back(bits[8]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
 int fortyone ( string bits )
@@ -320,10 +331,10 @@ int fortyone ( string bits )
 	for ( int i = 1; i < 8; i++ )
 		bitValue.push_back(bits[i]);
 	
-	return (atoi(bitValue.c_str());
+	return (atoi(bitValue.c_str()));
 }
 
-void Hex_Splitter(string a, string *b, string *c)
+void Hex_Splitter(string a, string &b, string &c)
 //Takes in string a of length 8 and splits into 
 // first and second half and returns first half, b
 // and second half c
@@ -335,7 +346,7 @@ void Hex_Splitter(string a, string *b, string *c)
 		stringstream ss;
 		ss<<a[i];
 		ss>>temp;
-		(*b).append(temp);
+		(b).append(temp);
 		temp.clear();
 	}
 	for (int i=4; i<8; i++)
@@ -343,7 +354,7 @@ void Hex_Splitter(string a, string *b, string *c)
 		stringstream ss;
 		ss<<a[i];
 		ss>>temp;
-		(*c).append(temp);
+		(c).append(temp);
 		temp.clear();
 	}
 };
