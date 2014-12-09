@@ -5,6 +5,7 @@
 #include <sstream>
 
 using namespace std;
+// this spilts an 8 digit hexidecimal into two 4 didgit hexi strings
 void Hex_Splitter(string a, string *b, string *c)
 {
 	
@@ -27,6 +28,7 @@ void Hex_Splitter(string a, string *b, string *c)
 	}
 };
 
+//this converts hexidecimail string to decimal number
 int Hex_to_Dec(string a)
 {
 	stringstream aa;
@@ -36,6 +38,7 @@ int Hex_to_Dec(string a)
 	return n;
 };
 
+//this convers a hexidecimail string to binary string
 string Hex_to_Bin(string a)
 {
 	
@@ -48,6 +51,8 @@ string Hex_to_Bin(string a)
 };
 int main()
 {
+	// here are some test cases to see if the function actully work 
+	// and show the ways that they work
 	string d;
 	string temp;
 	string Big,Boy;
