@@ -3,18 +3,22 @@
 #include <fstream>
 #include <string>
 #include "DataClass.h"
+#include <queue>
 using namespace std;
 
-int main()
+void parse(queue &);
+
+void readFromFile()
 {
 	ifstream input;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
-	input.open("test_data.log");
 	FileData line;
+	queue<FileData> list;
+	input.open("test_data.log");
 	input.ignore(10000, '\n');
 	int lines = 1;
 
-	while(input.is_open())
+	while(!input.eof())
 	{
 		input >> Sample >> BgL >> RelTime >> AbsTime >> Transfer >> AM >> Address >> Data >> Size >> Cycle >> Status >> Iack >> Fa >> blank;
 		line.setSample(Sample);
@@ -31,17 +35,14 @@ int main()
 		line.setIack(Iack);
 		line.setFail(Fa);
 		line.setIRQ(blank);
-	// Store this info into the class FileData line
-
-	// Send this class to another function to do work/translation
-
-
-	// Iterate lines to keep track of line numbers
+		line.setLineNumber(lines);
+		list.push(line);
+	
 		lines++;
 	}
+		//system("pause");
+	
 	input.close();
 	cout << "Grabbing input success" << endl;
-	
-
-return 0;
+	parse(list); //passes the queue into the parser
 }

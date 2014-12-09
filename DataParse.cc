@@ -1,5 +1,5 @@
-include "DataClass.h"
-include "DataOut.h"
+#include "DataClass.h"
+#include "DataOut.h"
 #include<iostream>
 #include<iomanip>
 #include <string>
@@ -46,28 +46,28 @@ int fortyone ( string );
 
 // BEGIN MAIN FILE ITERATION
 
-Queue parse(Queue& list)
+queue<FileData> parse(queue<FileData> &list)
 {
-	Queue returnList;
+	queue<OutData> returnList;      //May need fixing
 
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
 	{
-		DataClass temp = list.front();
+		FileData temp = list.front();
 		int Word_Num = 0;
 		
 		bool createData = false;
 		bool d2s = false;
 		
-		if ( temp.getAddress == "40000810" )
+		if ( temp.getAddress() == "40000810" )
 		{
 			//grab first Hexadecimal to get # of words
-			Word_Num=Hex_to_Dec(temp.getData);
+			Word_Num=Hex_to_Dec(temp.getData());
 		}
-		else if ( temp.getAddress == "40000C18" )
+		else if ( temp.getAddress() == "40000C18" )
 		{
 			//grab first Hexadecimal to get # of words
-			Word_Num=Hex_to_Dec(temp.getData);
+			Word_Num=Hex_to_Dec(temp.getData());
 			d2s = true;
 		}
 		
@@ -96,7 +96,7 @@ Queue parse(Queue& list)
 				temp = list.front();
 				string aa;
 				string bb;
-				Hex_Splitter(temp.getData,aa,bb);
+				Hex_Splitter(temp.getData(),aa,bb);
 				aa=Hex_to_Bin(aa);
 				bb=Hex_to_Bin(bb);
 				next.push_back(aa);
@@ -132,7 +132,7 @@ Queue parse(Queue& list)
 				}
 				
 				// According to how ever many words are in the code, assign certain values to it.
-				for ( int i = 0; i <= Word_Num); i++)
+				for ( int i = 0; i <= Word_Num; i++)
 				{
 					switch (i)
 					{
@@ -189,8 +189,7 @@ Queue parse(Queue& list)
 
 // FUNCTION DEFINITIONS
 
-int zero ( bitset bits );
-//Calls the 0 word using bits 14-13
+int zero ( bitset bits )  //Calls the 0 word using bits 14-13
 {
 	string bitValue = "";
 	
@@ -200,7 +199,7 @@ int zero ( bitset bits );
 	return (atoi(bitValue.c_str());
 }
 
-int one ( string bits );
+int one ( string bits )
 //Calls the 1 word using bits 15-13
 {
 	string bitValue = "";
@@ -212,7 +211,7 @@ int one ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int four ( string bits );
+int four ( string bits )
 //Calls the 4 word using bit 0
 {
 	string bitValue = "";
@@ -222,7 +221,7 @@ int four ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int five ( string bits );
+int five ( string bits )
 //Calls the 5 word using bits 6-0
 {
 	string bitValue = "";
@@ -238,7 +237,7 @@ int five ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int ten ( string bits );
+int ten ( string bits )
 //Calls the 10 word using bits 15-11
 {
 	string bitValue = "";
@@ -252,7 +251,7 @@ int ten ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int fifteen ( string bits );
+int fifteen ( string bits )
 //Calls the 15 word using bit 2
 {
 	string bitValue = "";
@@ -262,7 +261,7 @@ int fifteen ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int twentytwo ( string bits );
+int twentytwo ( string bits )
 //Calls the 22 word using bit 3
 {
 	string bitValue = "";
@@ -272,7 +271,7 @@ int twentytwo ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int thirtytwo ( string bits );
+int thirtytwo ( string bits )
 //Calls the 32 word using bits 14-0
 {
 	string bitValue = "";
@@ -283,7 +282,7 @@ int thirtytwo ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int thirtyseven ( string bits );
+int thirtyseven ( string bits )
 //Calls the 37 word using bit 15
 {
 	string bitValue = "";
@@ -293,7 +292,7 @@ int thirtyseven ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int thirtyeight ( string bits );
+int thirtyeight ( string bits )
 //Calls the 38 word using bit 14
 {
 	string bitValue = "";
@@ -303,7 +302,7 @@ int thirtyeight ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int forty ( string bits );
+int forty ( string bits )
 //Calls the 40 word using bit 7
 {
 	string bitValue = "";
@@ -313,7 +312,7 @@ int forty ( string bits );
 	return (atoi(bitValue.c_str());
 }
 
-int fortyone ( string bits );
+int fortyone ( string bits )
 //Calls the 41 word using bit 14-8
 {
 	string bitValue = "";

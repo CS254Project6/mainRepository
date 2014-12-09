@@ -6,6 +6,8 @@
 #include <queue>
 using namespace std;
 
+queue<FileData> parse(queue<FileData> &);
+
 void readFromFile()
 {
 	ifstream input;
@@ -34,8 +36,6 @@ void readFromFile()
 		line.setFail(Fa);
 		line.setIRQ(blank);
 		line.setLineNumber(lines);
-		cout << line.getLineNumber() << " " << line.getAddress() << " " << endl;
-		
 		list.push(line);
 	
 		lines++;
@@ -43,10 +43,6 @@ void readFromFile()
 		//system("pause");
 	
 	input.close();
-	while(!list.empty())
-	{
-		cout << list.front().getLineNumber() << endl;
-		list.pop();
-	}
 	cout << "Grabbing input success" << endl;
+	parse(list); //passes the queue into the parser
 }

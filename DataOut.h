@@ -32,7 +32,7 @@ public:
 	void setwords(int);
 	void setwrite(bool);
 	void setD2S(bool);
-	void set HiLo(bool);
+	void setHiLo(bool);
 	
 	int getRec_Ctrl();
 	int getCmd_Type();
