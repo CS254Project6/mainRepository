@@ -3,6 +3,7 @@
 #include <vector>
 #include <sstream> 
 #include "DataOut.h"
+#include "TextFormat.h"
 using namespace std;
 //descriptions for each of the commands
 string TextClass::strRec_Ctrl()
