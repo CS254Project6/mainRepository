@@ -47,14 +47,14 @@ int fortyone ( string );
 void parse(vector<FileData> &list, vector<OutData> &returnList)
 {
 
-	int listSize = list.size();
-	int progress = 0;
+	//double listSize = list.size();
+	//double progress = 0;
 	
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
 	{
-		progress = listSize - list.size();
-		cout << (progress/listSize) << "% completed." << endl;
+		//progress = listSize - list.size();
+		//cout << (progress/listSize) << "% completed." << endl;
 
 		OutData data;
 		FileData temp = list.front();
