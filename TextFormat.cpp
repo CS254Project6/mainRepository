@@ -5,13 +5,20 @@
 #include "DataOut.h"
 #include "TextFormat.h"
 using namespace std;
-//descriptions for each of the commands
 
-TextClass::TextClass()
-{
-	cout << "Building textwriter\n";
-}
-string TextClass::strRec_Ctrl()
+//forward declaration
+string strRec_Ctrl(OutData);
+string strCmd_Type(OutData);
+string strEnable(int);
+string strDirection(OutData);
+string strParity(OutData);
+string assignline(OutData);
+string assignline (OutData,int);
+void toFile(vector<OutData>&);
+
+
+//descriptions for each of the commands
+string strRec_Ctrl(OutData outobj)
 {	switch(outobj.getRec_Ctrl())
 	{
 	case 0:  return "0 (no recording)";             break;
@@ -20,7 +27,7 @@ string TextClass::strRec_Ctrl()
 	default: return "NaN (not found)";              break;
 	}
 }
-string TextClass::strCmd_Type()
+string strCmd_Type(OutData outobj)
 {	switch(outobj.getCmd_Type())
 	{
 	case 1:  return "1 (unknown)";     break;
@@ -30,22 +37,19 @@ string TextClass::strCmd_Type()
 	default: return "NaN (not found)"; break;
 	}
 }
-string TextClass::strEnable(int e)
+string strEnable(int e)
 {	return (e)? "1 (enable)": "0 (disable)";
 }
-string TextClass::strDirection()
+string strDirection(OutData outobj)
 {	return (outobj.getDirection())? "1 (left)": "0 (right)";
 }
-string TextClass::strParity()
+string strParity(OutData outobj)
 {	return (outobj.getParity())? "1 (odd)": "0 (even)";
 }
 
 
-void TextClass::getOutData(OutData o)
-{	outobj = o;
-}
 
-string TextClass::assignline()
+string assignline(OutData outobj)
 { stringstream sstm;
 	string direction = (outobj.getD2S())?
 		"Write D-to-S command: ":
@@ -56,7 +60,7 @@ string TextClass::assignline()
 }//end of assignline()
 
 //Function to print any of the other lines ()
-string TextClass::assignline(int wordnumber)
+string assignline(OutData outobj, int wordnumber)
 {	
 	//conditional assignment returns line ## containing command
 	int linenum = (outobj.getHiLo())?
@@ -99,27 +103,28 @@ string TextClass::assignline(int wordnumber)
 
 void toFile(vector<OutData>& outvector)
 {
+	OutData outobj;
 	fstream f;
 	f.open ("outputfile.txt", ios::out);
 	while (!outvector.empty())
 	{	//load item from vector
-		this.getOutData(outvector.front());
+		outobj = outvector.front();
 		outvector.erase(outvector.begin());
 		//read and send output lines to file
-		f << assignline();
+		f << assignline(outobj);
 		int words = outobj.getwords();
 		if (outobj.getHiLo())
 		{ 
 			for (int i = words; i >= 0; i--)
 			{
-				f << assignline(i);
+				f << assignline(outobj, i);
 			}
 		}
 		else
 		{	
 			for (int i = 0; i <= words; i++)
 			{
-				f << assignline(i);
+				f << assignline(outobj, i);
 			}
 		}
 		f << endl;
