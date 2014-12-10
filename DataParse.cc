@@ -46,7 +46,7 @@ int fortyone ( string );
 
 void parse(vector<FileData> &list, vector<OutData> &returnList)
 {
-
+	cout << "\nStarting Parsing...";
 	//double listSize = list.size();
 	//double progress = 0;
 	
@@ -86,6 +86,7 @@ void parse(vector<FileData> &list, vector<OutData> &returnList)
 		*/
 		if (createData == true)
 		{
+			cout << "\nAddress found. Processing.";
 			if ( d2s == false )
 				//data.setD2S=false;
 				data.setD2S(false);
@@ -200,6 +201,7 @@ void parse(vector<FileData> &list, vector<OutData> &returnList)
 		
 		list.erase(list.begin());
 	}
+	cout << "\nParsing process completed." << endl;
 }
 
 // FUNCTION DEFINITIONS
