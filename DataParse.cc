@@ -1,14 +1,12 @@
 #include "DataClass.h"
 #include "DataOut.h"
-#include<iostream>
-#include<iomanip>
+#include <iostream>
+#include <iomanip>
 #include <string>
 #include <bitset>
 #include <sstream>
 #include <vector>
-#include <queue>
-#include <stack>
-#include<cstdlib>
+#include <cstdlib>
 using namespace std;
 
 // FUNCTION DECLARATIONS
@@ -46,7 +44,7 @@ int fortyone ( string );
 
 // BEGIN MAIN FILE ITERATION
 
-void parse(vector<FileData> &list, queue<OutData> &returnList)
+void parse(vector<FileData> &list, vector<OutData> &returnList)
 {
 	
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
@@ -188,7 +186,7 @@ void parse(vector<FileData> &list, queue<OutData> &returnList)
 				}
 			}
 			
-			returnList.push(data);
+			returnList.push_back(data);
 		}
 		
 		list.erase(list.begin());
