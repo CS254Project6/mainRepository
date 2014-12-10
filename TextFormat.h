@@ -1,11 +1,11 @@
 #ifndef TextFormat
 #define TextFormat
-//TextFormat takes an OutData queue and 
+//TextFormat takes an OutData vector and 
 // prints to a named file.
 //It does this by interpreting the command 1 word at a time, in either ascending or descending order.
 #include <iostream>
 #include <fstream>
-#include <queue>
+#include <vector>
 #include <sstream> 
 #include "DataOut.h"
 using namespace std;
@@ -103,14 +103,14 @@ public:
 		return sstm.str();
 	}
 	
-	void toFile(queue<OutData>& outqueue)
+	void toFile(vector<OutData>& outvector)
 	{
 		fstream f;
 		f.open ("outputfile.txt", ios::out);
-		while (!outqueue.empty())
-		{	//load item from queue
-			getOutData(outqueue.front());
-			outqueue.pop();
+		while (!outvector.empty())
+		{	//load item from vector
+			getOutData(outvector.front());
+			outvector.erase(outvector.begin());
 			//read and send output lines to file
 			f << assignline();
 			int words = outobj.getwords();
