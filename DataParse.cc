@@ -46,10 +46,15 @@ int fortyone ( string );
 
 void parse(vector<FileData> &list, vector<OutData> &returnList)
 {
+
+	int listSize = list.size();
+	int progress = 0;
 	
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
 	{
+		cout << (progress/listSize) << "% completed." << endl;
+
 		OutData data;
 		FileData temp = list.front();
 		int Word_Num = 0;
@@ -184,9 +189,10 @@ void parse(vector<FileData> &list, vector<OutData> &returnList)
 							break;
 					}
 				}
+				returnList.push_back(data);
 			}
 			
-			returnList.push_back(data);
+			
 		}
 		
 		list.erase(list.begin());
