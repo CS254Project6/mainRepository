@@ -46,7 +46,7 @@ int fortyone ( string );
 
 // BEGIN MAIN FILE ITERATION
 
-void parse(queue<FileData> &list, queue<OutData> &returnList)
+void parse(vector<FileData> &list, queue<OutData> &returnList)
 {
 	/May need fixing
 	
@@ -103,7 +103,7 @@ void parse(queue<FileData> &list, queue<OutData> &returnList)
 				// Create a Vector in order from 0 -> highest
 				vector<string> next;
 				
-				list.pop();
+				list.erase(list.begin());
 				temp = list.front();
 				string aa = NULL;
 				string bb = NULL;
@@ -113,7 +113,7 @@ void parse(queue<FileData> &list, queue<OutData> &returnList)
 				next.push_back(aa);
 				next.push_back(bb);
 				string tempAddress = list.front().getAddress();
-				list.pop();
+				list.erase(list.begin());
 				temp = list.front();
 				
 				bool hilo = false;
@@ -138,7 +138,7 @@ void parse(queue<FileData> &list, queue<OutData> &returnList)
 						next.push_back(aa);
 						next.push_back(bb);
 					}
-					list.pop();
+					list.erase(list.begin());
 					temp = list.front();
 				}
 				
@@ -192,7 +192,7 @@ void parse(queue<FileData> &list, queue<OutData> &returnList)
 			returnList.push(data);
 		}
 		
-		list.pop();
+		list.erase(list.begin());
 	}
 }
 
