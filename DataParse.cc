@@ -46,7 +46,7 @@ int fortyone ( string );
 
 // BEGIN MAIN FILE ITERATION
 
-queue<OutData> parse(queue<FileData> &list)
+void parse(queue<FileData> &list, queue<OutData> &returnList)
 {
 	queue<OutData> returnList;      //May need fixing
 	
@@ -194,8 +194,6 @@ queue<OutData> parse(queue<FileData> &list)
 		
 		list.pop();
 	}
-	
-	return returnList;
 }
 
 // FUNCTION DEFINITIONS
