@@ -1,7 +1,7 @@
 #ifndef TextFormat
 #define TextFormat
-//TextFormat takes an OutData object and 
-// returns a printed command log chunk.
+//TextFormat takes an OutData queue and 
+// prints to a named file.
 //It does this by interpreting the command 1 word at a time, in either ascending or descending order.
 #include <iostream>
 #include <fstream>
@@ -108,10 +108,10 @@ private:
 			}
 		}
 	}
-	void toFile(queue<OutData>& outqueue, string fname)
+	void toFile(queue<OutData>& outqueue)
 	{
 		fstream f;
-		f.open (fname, ios::out);
+		f.open ("outputfile.txt", ios::out);
 		while (!outque.empty())
 		{	//load item from queue
 			getOutData(outqueue.pop());
