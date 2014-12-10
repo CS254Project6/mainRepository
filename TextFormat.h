@@ -91,23 +91,7 @@ private:
 		return "Line " + linenum + ": " + strfield + "\n";
 		//      Line ##: Word #: <command> = <description>
 	}
-	void Read(OutData o)
-	{	assignline();
-		if (highlow)
-		{ 
-			for (int i = 0; i <= words; i++)
-			{
-				assignline(i);
-			}
-		}
-		else
-		{	
-			for (int i = words; i >= 0; i--)
-			{
-				assignline(i);
-			}
-		}
-	}
+	
 	void toFile(queue<OutData>& outqueue)
 	{
 		fstream f;
@@ -117,9 +101,19 @@ private:
 			getOutData(outqueue.pop());
 			//read and send output lines to file
 			f << assignline();
-			for (int i = words; i >= 0; i--)
-			{
-				f << assignline(i);
+			if (outobj.getHiLo())
+			{ 
+				for (int i = words; i >= 0; i--)
+				{
+					f << assignline(i);
+				}
+			}
+			else
+			{	
+				for (int i = 0; i <= words; i++)
+				{
+					f << assignline(i);
+				}
 			}
 			f << endl;
 		}
