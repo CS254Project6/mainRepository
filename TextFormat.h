@@ -113,7 +113,7 @@ public:
 			outqueue.pop();
 			//read and send output lines to file
 			f << assignline();
-			int words = outobj.words();
+			int words = outobj.getwords();
 			if (outobj.getHiLo())
 			{ 
 				for (int i = words; i >= 0; i--)
