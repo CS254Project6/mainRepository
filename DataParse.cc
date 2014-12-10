@@ -110,8 +110,8 @@ void parse(vector<FileData> &list, vector<OutData> &returnList)
 				
 				list.erase(list.begin());
 				temp = list.front();
-				string aa = NULL;
-				string bb = NULL;
+				string aa = "";
+				string bb = "";
 				Hex_Splitter(temp.getData(),aa,bb);
 				aa=Hex_to_Bin(aa);
 				bb=Hex_to_Bin(bb);

@@ -67,12 +67,14 @@ void parse(vector<FileData> &list, vector<OutData> &returnList)
 		{
 			//grab first Hexadecimal to get # of words
 			Word_Num=Hex_to_Dec(temp.getData());
+			createData = true;
 		}
 		else if ( temp.getAddress() == "40000C18" )
 		{
 			//grab first Hexadecimal to get # of words
 			Word_Num=Hex_to_Dec(temp.getData());
 			d2s = true;
+			createData = true;
 		}
 		
 		
