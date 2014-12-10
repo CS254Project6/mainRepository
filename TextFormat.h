@@ -1,7 +1,7 @@
 #ifndef TextFormat
 #define TextFormat
-//TextFormat takes an OutData object and 
-// returns a printed command log chunk.
+//TextFormat takes an OutData queue and 
+// prints to a named file.
 //It does this by interpreting the command 1 word at a time, in either ascending or descending order.
 #include <iostream>
 #include <fstream>
@@ -91,35 +91,29 @@ private:
 		return "Line " + linenum + ": " + strfield + "\n";
 		//      Line ##: Word #: <command> = <description>
 	}
-	void Read(OutData o)
-	{	assignline();
-		if (highlow)
-		{ 
-			for (int i = 0; i <= words; i++)
-			{
-				assignline(i);
-			}
-		}
-		else
-		{	
-			for (int i = words; i >= 0; i--)
-			{
-				assignline(i);
-			}
-		}
-	}
-	void toFile(queue<OutData>& outqueue, string fname)
+	
+	void toFile(queue<OutData>& outqueue)
 	{
 		fstream f;
-		f.open (fname, ios::out);
+		f.open ("outputfile.txt", ios::out);
 		while (!outque.empty())
 		{	//load item from queue
 			getOutData(outqueue.pop());
 			//read and send output lines to file
 			f << assignline();
-			for (int i = words; i >= 0; i--)
-			{
-				f << assignline(i);
+			if (outobj.getHiLo())
+			{ 
+				for (int i = words; i >= 0; i--)
+				{
+					f << assignline(i);
+				}
+			}
+			else
+			{	
+				for (int i = 0; i <= words; i++)
+				{
+					f << assignline(i);
+				}
 			}
 			f << endl;
 		}
