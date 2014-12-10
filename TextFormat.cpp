@@ -6,6 +6,11 @@
 #include "TextFormat.h"
 using namespace std;
 //descriptions for each of the commands
+
+TextClass::TextClass()
+{
+	cout << "Building textwriter\n";
+}
 string TextClass::strRec_Ctrl()
 {	switch(outobj.getRec_Ctrl())
 	{
@@ -34,9 +39,7 @@ string TextClass::strDirection()
 string TextClass::strParity()
 {	return (outobj.getParity())? "1 (odd)": "0 (even)";
 }
-TextClass::TextClass()
-{	cout << "Building textwriter\n";
-}
+
 
 void TextClass::getOutData(OutData o)
 {	outobj = o;
@@ -94,13 +97,13 @@ string TextClass::assignline(int wordnumber)
 	return sstm.str();
 }
 
-void TextClass::toFile(vector<OutData>& outvector)
+void toFile(vector<OutData>& outvector)
 {
 	fstream f;
 	f.open ("outputfile.txt", ios::out);
 	while (!outvector.empty())
 	{	//load item from vector
-		getOutData(outvector.front());
+		this.getOutData(outvector.front());
 		outvector.erase(outvector.begin());
 		//read and send output lines to file
 		f << assignline();
