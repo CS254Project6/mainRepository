@@ -53,6 +53,7 @@ void parse(vector<FileData> &list, vector<OutData> &returnList)
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
 	{
+		progress = list.size();
 		cout << (progress/listSize) << "% completed." << endl;
 
 		OutData data;
