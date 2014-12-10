@@ -23,7 +23,7 @@ public:
 	TextClass();
 	void getOutData(OutData o);
 	string assignline();
-	string assignline (int wordnumber);
-	void toFile(vector<OutData>& outvector);
+	string assignline (int);
+	void toFile(vector<OutData>&);
 };
 #endif
