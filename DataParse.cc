@@ -48,7 +48,6 @@ int fortyone ( string );
 
 void parse(queue<FileData> &list, queue<OutData> &returnList)
 {
-	/May need fixing
 	
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
@@ -377,4 +376,4 @@ string Hex_to_Bin(string a)
 	aa>>n;
 	bitset<16> b(n);
 	return b.to_string();
-};
+}

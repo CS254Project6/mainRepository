@@ -27,7 +27,7 @@ FileData::FileData(int line, string Sample_arg, string BgL_arg, string RelTime_a
 
 FileData::FileData()
 {
-	cout << "Starting" << endl;
+	//cout << "Starting" << endl;
 }
 void FileData::setLineNumber(int line)
 {

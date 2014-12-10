@@ -5,23 +5,27 @@
 #include "DataClass.h"
 #include <queue>
 #include "DataOut.h"
+#include<vector>
 using namespace std;
 
-queue<FileData> parse(queue<FileData> &);
-
-void readFromFile()
+void parse(vector<FileData> &, queue<OutData> &);
+void toFile(queue<OutData> &);
+void readFromFile(char *file_name)
 {
+	cout << file_name << endl;
 	queue<OutData> OutQueue;
+	
 	ifstream input;
 	string Sample, BgL, RelTime, AbsTime, Transfer, AM, Address, Data, Size, Cycle, Status, Iack, Fa, blank; 
-	FileData line;
-	queue<FileData> list;
-	input.open("test_data.log");
+	
+	vector<FileData> list;
+	input.open(file_name);
 	input.ignore(10000, '\n');
 	int lines = 1;
 
 	while(!input.eof())
 	{
+		FileData line;
 		input >> Sample >> BgL >> RelTime >> AbsTime >> Transfer >> AM >> Address >> Data >> Size >> Cycle >> Status >> Iack >> Fa >> blank;
 		line.setSample(Sample);
 		line.setBgL(BgL);
@@ -38,17 +42,27 @@ void readFromFile()
 		line.setFail(Fa);
 		line.setIRQ(blank);
 		line.setLineNumber(lines);
-		list.push(line);
-	
+		list.push_back(line);
+		//list.
+		cout << line.getBgL() << endl;
 		lines++;
 	}
 		//system("pause");
 	
 	input.close();
+	cout << list.size() << endl;
 	cout << "Grabbing input success" << endl;
 	
-	//OutQueue = 
-	parse(list); //passes the queue into the parser
+	parse(list,OutQueue); //passes the queue into the parser
+	cout << list.size() << endl << " " << OutQueue.size();
+	
+	/*while(!OutQueue.empty())
+	{
+		cout << OutQueue.front().getlinenumber() << endl;
+		OutQueue.pop();
+	}*/
+	
+	toFile(OutQueue);
 }
 
 
