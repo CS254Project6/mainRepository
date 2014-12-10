@@ -48,7 +48,7 @@ int fortyone ( string );
 
 void parse(queue<FileData> &list, queue<OutData> &returnList)
 {
-	queue<OutData> returnList;      //May need fixing
+	/May need fixing
 	
 	// NEED AN INTERATION LOOP TO GO THROUGH THE LINKED LIST
 	while ( !list.empty() )
